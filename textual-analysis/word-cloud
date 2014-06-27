@@ -1,0 +1,45 @@
+setwd("F:\\presentations\\code\\wordcloud")
+# Load libraries
+library(tm)
+# Function to generate corpus from a single file
+generate_Corpus <- function(filepath) {
+  # Read data from file
+  vec <- scan(filepath, what = "", quiet = TRUE)
+  # Collapse word vector
+  vec <- paste(vec, collapse = " ")
+  # Instantiate Corpus
+  s.cor <- Corpus(VectorSource(vec, encoding = "ANSI"))
+  
+  return(s.cor)
+}
+
+# reading the file 
+myCorpus <- generate_Corpus("data\\data_obama_talks.txt")
+# convert to lower 
+myCorpus <- tm_map(myCorpus, tolower)
+inspect(myCorpus)
+# remove punctuation
+myCorpus <- tm_map(myCorpus, removePunctuation)
+# remove numbers
+myCorpus <- tm_map(myCorpus, removeNumbers)
+# myStopwords <- c(stopwords('english'), "available", "via")
+myStopwords <- c(stopwords('english'),"subject","href","ive","please","doesnt","dont","cant","thats")
+# idx <- which(myStopwords == "r")
+# myStopwords <- myStopwords[-idx]
+myCorpus <- tm_map(myCorpus, removeWords, myStopwords)
+myCorpus <- tm_map(myCorpus, tolower)
+
+# term document matrix 
+myDtm <- TermDocumentMatrix(myCorpus, control = list(minWordLength = 1))
+inspect(myDtm)
+# findFreqTerms(myDtm, lowfreq=10)
+library(wordcloud)
+m <- as.matrix(myDtm)
+
+# calculate the frequency of words
+v <- sort(rowSums(m), decreasing=TRUE)
+myNames <- names(v)
+names(d)
+d <- data.frame(word=myNames, freq=v)
+write.table(d,"output.csv",sep=",")
+wordcloud(d$word, d$freq, min.freq=30)
