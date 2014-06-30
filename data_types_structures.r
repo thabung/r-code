@@ -1,10 +1,35 @@
+# Data types
+lookLikeInteger <- 1
+typeof(lookLikeInteger)
+
+#convert to integer
+integerValue  <- as.integer(lookLikeInteger)
+typeof(integerValue)
+
+#initialiaze integer
+integerValue <- 1L
+typeof(integerValue)
+
+#
+classVector <- c("First", "Second", "Third", "Fourth")
+as.factor(classVector)
+
+
 # Vectors and operations
 # dataframes and operations
 # Vector creation and operations on vectors 
 
 # creating a vector
-vector1<-c(9,8,2,7) # OK
+vector1 <- c(9,8,2,7) # OK
 vector1
+
+#seqeunce vector
+seqVector <- seq(1:100)
+seqVector
+
+# Repeat vector
+repVector <- rep(2,10)
+repVector
 
 
 # create a second vector 
@@ -37,7 +62,7 @@ vector1
 vector2
 
 #logical selection
-vector1[vector2=1]
+vector1[vector2 == 1]
 ############# end of vector ################
 
 
@@ -49,19 +74,23 @@ df
 mtcars
 # name of the columns 
 names(mtcars)
-# accessing a row
+# accessing the first row
 mtcars[1,]
+
+#accessing rows from 1 to 9
 mtcars[c(1:9),]
 mtcars[c(8:9),]
 
 # selecting column 
 mtcars$mpg
 mtcars[,"mpg"]
-mtcars[mtcars$mpg>1,]
+# get the rows whose mpg > 1 
+mtcars[mtcars$mpg > 1,]
 
+# sampling, get a sample of 5
+mtcars[sample(nrow(mtcars), 5,replace=FALSE), ]
 
-mtcars[sample(nrow(mtcars), 5,replace=TRUE), ]
-
+# creating a matrix
 my.matrix <- matrix(c(0:29),nrow=15,ncol=2)
 my.matrix[,1]
 
