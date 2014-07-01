@@ -86,6 +86,9 @@ mtcars$mpg
 mtcars[,"mpg"]
 # get the rows whose mpg > 1 
 mtcars[mtcars$mpg > 1,]
+#cbind
+#rbind
+
 
 # sampling, get a sample of 5
 mtcars[sample(nrow(mtcars), 5,replace=FALSE), ]
@@ -93,6 +96,9 @@ mtcars[sample(nrow(mtcars), 5,replace=FALSE), ]
 # creating a matrix
 my.matrix <- matrix(c(0:29),nrow=15,ncol=2)
 my.matrix[,1]
+
+
+
 
 
 

@@ -49,7 +49,7 @@ v <- sort(rowSums(docMat), decreasing=TRUE)
 wordFreqName <- names(v)
 
 wordFreqDataFrame <- data.frame(word=wordFreqName, freq=v)
-wordcloud(wordFreqDataFrame$word, wordFreqDataFrame$freq, min.freq=10)
+wordcloud(wordFreqDataFrame$word, wordFreqDataFrame$freq, min.freq=10 , colors=brewer.pal(8, "Dark2"))
 
 
 
